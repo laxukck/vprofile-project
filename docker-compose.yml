@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   vprodb:
     build:
@@ -8,13 +9,15 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - vpordbdata:/var/lib/mysql
+      - vprodbdata:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=vprodbpass
+
   vprocache01:
     image: memcached
     ports:
       - "11211:11211"
+
   vpromq01:
     image: rabbitmq
     ports:
@@ -31,8 +34,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - vporappdata:/usr/local/tomcat/webapps
-
+      - vproappdata:/usr/local/tomcat/webapps
 
   vproweb:
     build:
@@ -43,5 +45,5 @@ services:
       - "80:80"
 
 volumes:
-    vprodbdata: {}
-    vproappdata: {}
+  vprodbdata: {}
+  vproappdata: {}
